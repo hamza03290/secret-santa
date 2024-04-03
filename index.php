@@ -161,6 +161,9 @@ function getEmailFromDatabase($username)
     $conn = new mysqli($host, $dbUser, $dbPassword, $dbName);
 
     // Check the connection
+    if ($conn->connect_error) {
+        die('Connection failed: ' . $conn->connect_error);
+    }
 
     // Fetch the user's email from the database
     $query = "SELECT email FROM users WHERE username = ?";
